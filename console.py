@@ -19,7 +19,7 @@ class HBNBCommand(cmd.Cmd):
         print("")
         return True
 
-    def help_quit(self, arg):
+    def do_help_quit(self, arg):
         print("Quit command to exit the program")
 
 if __name__ == '__main__':
