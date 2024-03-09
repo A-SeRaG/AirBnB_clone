@@ -2,6 +2,9 @@
 import uuid
 from datetime import datetime
 
+"""class Basemodel"""
+
+
 class BaseModel:
     def __init__(self):
         self.id = uuid.uuid4()
@@ -14,7 +17,7 @@ class BaseModel:
     def to_dict(self):
         self.iso_created = self.created_at.isoformat()
         self.iso_updated = self.updated_at.isoformat()
-        
+
         object_dicit = self.__dict__.copy()
         object_dicit["__class__"] = self.__class__.__name__
         object_dicit["created_at"] = self.iso_created
@@ -22,7 +25,8 @@ class BaseModel:
 
     def __str__(self):
         return f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}"
-    
+
+
 if __name__ == "__main__":
     my_model = BaseModel()
     my_model.name = "My First Model"
@@ -34,5 +38,5 @@ if __name__ == "__main__":
     print(my_model_json)
     print("JSON of my_model:")
     for key in my_model_json.keys():
-        print("\t{}: ({}) - {}".format(key, type(my_model_json[key]), my_model_json[key]))
-
+        print("\t{}: ({}) - {}".format(key, type(my_model_json[key]),
+              my_model_json[key]))
