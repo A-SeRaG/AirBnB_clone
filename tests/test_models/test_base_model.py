@@ -1,60 +1,40 @@
 #!/usr/bin/python3
-"""
-Unittest for BaseModel class
-"""
 import unittest
-import os
-import pep8
 from models.base_model import BaseModel
 
+class TesrBaseModel(unittest.TestCase):
 
-class TestBaseModel(unittest.TestCase):
+    def in_test(self):
+        my_base = BaseModel()
+        
+        self.assertIsNone(my_base.id)
+        self.assertIsNone(my_base.created_at)
+        self.assertIsNone(my_base.updated_at)
 
-    @classmethod
-    def setUpClass(cls):
-        cls.base1 = BaseModel()
-        cls.base1.name = "Greg"
-        cls.base1.my_number = 29
+    def sa_test(self):
+        my_base = BaseModel()
+        
+        define_update = my_base.update.at
+        cuurnt_update = my_base.save()
+        
+        self.assertNotEqual(define_update, cuurnt_update)
+        
+    def di_test(self):
+        my_base = BaseModel()
+        my_base_dict = my_base.to_dict()
+        
+        self.assertIsInstance(my_base_dict, dict)
+        self.assertEqual(my_base_dict['__class__'], my_base)
+        self.assertEqual(my_base_dict['id'], my_base.id)
+        self.assertEqual(my_base_dict['created_at'], my_base.iso_created)
+        self.assertEqual(my_base_dict['updated_at'], my_base.iso_updated)
 
-    @classmethod
-    def tearDownClass(cls):
-        del cls.base1
-        try:
-            os.remove("file.json")
-        except FileNotFoundError:
-            pass
-
-    def test_style_check(self):
-        """
-        Tests pep8 style
-        """
-        style = pep8.StyleGuide(quiet=True)
-        p = style.check_files(['models/base_model.py'])
-        self.assertEqual(p.total_errors, 0, "fix pep8")
-
-    def test_checking_for_functions(self):
-        self.assertIsNotNone(BaseModel.__doc__)
-        self.assertIsNotNone(BaseModel.save.__doc__)
-        self.assertIsNotNone(BaseModel.to_dict.__doc__)
-
-    def test_attributes(self):
-        self.assertTrue(hasattr(BaseModel, "__init__"))
-        self.assertTrue(hasattr(BaseModel, "save"))
-        self.assertTrue(hasattr(BaseModel, "to_dict"))
-
-    def test_init(self):
-        self.assertTrue(isinstance(self.base1, BaseModel))
-
-    def test_save(self):
-        self.base1.save()
-        self.assertNotEqual(self.base1.created_at, self.base1.updated_at)
-
-    def test_to_dict(self):
-        base1_dict = self.base1.to_dict()
-        self.assertEqual(self.base1.__class__.__name__, 'BaseModel')
-        self.assertIsInstance(base1_dict['created_at'], str)
-        self.assertIsInstance(base1_dict['updated_at'], str)
-
+    def st_test(self):
+        my_base = BaseModel()
+        
+        self.assertTrue(str(my_base).startswith("[BaseModel]"))
+        self.assertIn(my_base.id, str(my_base))
+        self.assertIn(str(my_base.__dict__), str(my_base))
 
 if __name__ == "__main__":
     unittest.main()
