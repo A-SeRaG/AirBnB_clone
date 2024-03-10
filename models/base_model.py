@@ -3,15 +3,28 @@ from datetime import datetime
 from uuid import uuid4
 import models
 
-"""Module BaseMode"""
+"""
+Module BaseModel
+Parent of all classes
+"""
 
 
 class BaseModel():
-    """Base class for Airbnb clone proje"""
+    """Base class for Airbnb clone project
+    Methods:
+        __init__(self, *args, **kwargs)
+        __str__(self)
+        __save(self)
+        __repr__(self)
+        to_dict(self)
+    """
 
     def __init__(self, *args, **kwargs):
-        """Initialize attributes: random uuid, dates created/updated"""
+        """
+        Initialize attributes: random uuid, dates created/updated
 
+
+        """
         if kwargs:
             for key, val in kwargs.items():
                 if "created_at" == key:
@@ -62,16 +75,3 @@ class BaseModel():
             else:
                 dic[k] = v
         return dic
-
-if __name__ == "__main__":
-    my_model = BaseModel()
-    my_model.name = "My First Model"
-    my_model.my_number = 89
-    print(my_model)
-    my_model.save()
-    print(my_model)
-    my_model_json = my_model.to_dict()
-    print(my_model_json)
-    print("JSON of my_model:")
-    for key in my_model_json.keys():
-        print("\t{}: ({}) - {}".format(key, type(my_model_json[key]), my_model_json[key]))
