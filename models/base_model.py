@@ -1,43 +1,55 @@
 #!/usr/bin/python3
-"""Defines the BaseModel class"""
-import models
+"""import module"""
 import uuid
 from datetime import datetime
+import models
 
 
 class BaseModel:
-
-    """BaseModel class"""
-
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwarg):
         """Initialize a new BaseModel"""
         t_form = '%Y-%m-%dT%H:%M:%S.%f'
-        self.id = str(uuid.uuid4())
-        self.created_at = datetime.utcnow()
-        self.updated_at = datetime.utcnow()
-        if kwargs:
-            for i, j in kwargs.items():
-                if i == "created_at" or i == "updated_at":
-                    self.__dict__[i] = datetime.strptime(j, t_form)
+        if kwarg:
+            for i, j in kwarg.items():
+                if i == "__class__":
+                    continue
+                elif i == "created_at" or i == "updated_at":
+                    setattr(self, i, datetime.strptime(j, t_form))
                 else:
-                    self.__dict__[i] = j
+                    setattr(self, i, j)
         else:
+            self.id = str(uuid.uuid4())
+
+            self.created_at = datetime.utcnow()
+            self.updated_at = datetime.utcnow()
             models.storage.new(self)
 
     def save(self):
-        """Update updated_at with the current datetime"""
         self.updated_at = datetime.utcnow()
-        models.storage.save()
 
     def to_dict(self):
-        """dictionary of the BaseModel"""
-        self.iso_c = self.created_at.isoformat()
-        self.iso_u = self.updated_at.isoformat()
-        obj_dic = self.__dict__.copy()
-        obj_dic["__class__"] = self.__class__.__name__
-        obj_dic["created_at"] = self.iso_c
-        obj_dic["updated_at"] = self.iso_u
+        self.iso_created = self.created_at.isoformat()
+        self.iso_updated = self.updated_at.isoformat()
+
+        object_dicit = self.__dict__.copy()
+        object_dicit["__class__"] = self.__class__.__name__
+        object_dicit["created_at"] = self.iso_created
+        object_dicit["updated_at"] = self.iso_updated
 
     def __str__(self):
-        """Return the str of the BaseModel"""
         return f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}"
+
+
+if __name__ == "__main__":
+    my_model = BaseModel()
+    my_model.name = "My First Model"
+    my_model.my_number = 89
+    print(my_model)
+    my_model.save()
+    print(my_model)
+    my_model_json = my_model.to_dict()
+    print(my_model_json)
+    print("JSON of my_model:")
+    for key in my_model_json.keys():
+        print("\t{}: ({}) - {}".format(key, type(my_model_json[key]),
+              my_model_json[key]))
