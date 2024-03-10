@@ -10,7 +10,7 @@ class BaseModel:
     """BaseModel class"""
 
     def __init__(self, *args, **kwargs):
-        """.."""
+        """Initialize a new BaseModel"""
         t_form = '%Y-%m-%dT%H:%M:%S.%f'
         self.id = str(uuid.uuid4())
         self.created_at = datetime.utcnow()
@@ -25,18 +25,19 @@ class BaseModel:
             models.storage.new(self)
 
     def save(self):
-        """.."""
+        """Update updated_at with the current datetime"""
         self.updated_at = datetime.utcnow()
+        models.storage.save()
 
     def to_dict(self):
-        """.."""
-        self.iso_created = self.created_at.isoformat()
-        self.iso_updated = self.updated_at.isoformat()
-        object_dicit = self.__dict__.copy()
-        object_dicit["__class__"] = self.__class__.__name__
-        object_dicit["created_at"] = self.iso_created
-        object_dicit["updated_at"] = self.iso_updated
+        """dictionary of the BaseModel"""
+        self.iso_c = self.created_at.isoformat()
+        self.iso_u = self.updated_at.isoformat()
+        obj_dic = self.__dict__.copy()
+        obj_dic["__class__"] = self.__class__.__name__
+        obj_dic["created_at"] = self.iso_c
+        obj_dic["updated_at"] = self.iso_u
 
     def __str__(self):
-        """.."""
+        """Return the str of the BaseModel"""
         return f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}"
