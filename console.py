@@ -18,8 +18,8 @@ class HBNBCommand(cmd.Cmd):
 
     prompt = "(hbnb)"
     __classes = {
-        "BaseModel","User","State","City",
-        "Place","Amenity","Review"
+        "BaseModel", "User", "State", "City",
+        "Place", "Amenity", "Review"
     }
 
     def emptyline(self):
@@ -38,7 +38,7 @@ class HBNBCommand(cmd.Cmd):
     def help_quit(self):
         """What quit command do"""
         print("Quit command to exit the program")
-    
+
     def do_create(self, arg):
         """Create a new class instance and print its id"""
         Wrds = shlex.split(arg)
