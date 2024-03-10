@@ -5,7 +5,7 @@ from models.base_model import BaseModel
 """this is unit test"""
 
 
-class TesrBaseModel(unittest.TestCase):
+class TestBaseModel(unittest.TestCase):
 
     def in_test(self):
         my_base = BaseModel()
