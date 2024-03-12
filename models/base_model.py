@@ -10,7 +10,7 @@ class BaseModel:
     """ def class attbute"""
 
     def __init__(self, *args, **kwargs):
-        """ init def"""
+        """ init def fun"""
         tform = "%Y-%m-%dT%H:%M:%S.%f"
         self.id = str(uuid4())
         self.created_at = datetime.today()
