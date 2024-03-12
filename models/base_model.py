@@ -7,7 +7,7 @@ from datetime import datetime
 
 class BaseModel:
 
-    """ def class"""
+    """ def class att"""
 
     def __init__(self, *args, **kwargs):
         """ init def"""
