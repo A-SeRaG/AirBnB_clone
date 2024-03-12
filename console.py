@@ -40,7 +40,7 @@ class HBNBCommand(cmd.Cmd):
         print("Quit command to exit the program")
 """
     def do_create(self, arg):
-        """Create a new class instance and print its id"""
+        ""Create a new class instance and print its id""
         Wrds = shlex.split(arg)
         if len(Wrds) == 0:
             print("** class name missing **")
@@ -51,7 +51,7 @@ class HBNBCommand(cmd.Cmd):
             storage.save()
 
     def do_show(self, arg):
-        """Display the str repr. of a class instance of a given id"""
+        ""Display the str repr. of a class instance of a given id""
         Wrds = shlex.split(arg)
         objs = storage.all()
         if len(Wrds) == 0:
@@ -66,7 +66,7 @@ class HBNBCommand(cmd.Cmd):
             print(objs["{}.{}".format(Wrds[0], Wrds[1])])
 
     def do_destroy(self, arg):
-        """Delete a class instance of a given id"""
+        ""Delete a class instance of a given id""
         Wrds = shlex.split(arg)
         objs = storage.all()
         if len(Wrds) == 0:
@@ -82,7 +82,7 @@ class HBNBCommand(cmd.Cmd):
             storage.save()
 
     def do_all(self, arg):
-        """Prints all str repr. of all instances based on\not class name"""
+        ""Prints all str repr. of all instances based on\not class name""
         Wrds = shlex.split(arg)
         if len(Wrds) > 0 and Wrds[0] not in self.__classes:
             print("** class doesn't exist **")
@@ -96,7 +96,7 @@ class HBNBCommand(cmd.Cmd):
             print(objs)
 
     def do_update(self, arg):
-        """Updates an instance based on the class name and id"""
+        ""Updates an instance based on the class name and id""
         Wrds = shlex.split(arg)
         objs = storage.all()
 
