@@ -38,6 +38,6 @@ class BaseModel:
         return rdict
 
     def __str__(self):
-        """str def"""
+        """str def function"""
         clname = self.__class__.__name__
         return "[{}] ({}) {}".format(clname, self.id, self.__dict__)
