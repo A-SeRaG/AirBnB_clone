@@ -25,7 +25,7 @@ class BaseModel:
             models.storage.new(self)
 
     def save(self):
-        """save def."""
+        """save def function"""
         self.updated_at = datetime.today()
         models.storage.save()
 
