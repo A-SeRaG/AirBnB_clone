@@ -7,7 +7,7 @@ from datetime import datetime
 
 class BaseModel:
 
-    """ def class attbute function"""
+    """ def class attbute func"""
 
     def __init__(self, *args, **kwargs):
         """ init def function"""
