@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""" the BaseModel class."""
+""" class"""
 import models
 from uuid import uuid4
 from datetime import datetime
