@@ -2,8 +2,6 @@
 """program called console that contains  command"""
 import cmd
 import shlex
-from models.base_model import BaseModel
-from models import storage
 from models.user import User
 from models.state import State
 from models.city import City
