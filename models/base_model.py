@@ -7,7 +7,7 @@ from datetime import datetime
 
 class BaseModel:
 
-    """Represents the BaseModel of the HBnB project."""
+    """ def class"""
 
     def __init__(self, *args, **kwargs):
         """Initialize a new BaseModel."""
