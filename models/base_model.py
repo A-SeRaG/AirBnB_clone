@@ -38,6 +38,6 @@ class BaseModel:
         return rdict
 
     def __str__(self):
-        """Return the print/str of the BaseModel instance."""
+        """str def"""
         clname = self.__class__.__name__
         return "[{}] ({}) {}".format(clname, self.id, self.__dict__)
