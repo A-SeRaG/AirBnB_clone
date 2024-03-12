@@ -1,5 +1,7 @@
 #!/usr/bin/python3
+
 """program called console that contains  command"""
+
 import cmd
 import shlex
 from models.base_model import BaseModel
@@ -18,28 +20,32 @@ class HBNBCommand(cmd.Cmd):
 
     prompt = "(hbnb)"
     __classes = {
-        "BaseModel","User","State","City",
-        "Place","Amenity","Review"
-    }
+        "BaseModel", "User", "State", "City",
+        "Place", "Amenity", "Review"}
 
     def emptyline(self):
+
         """handling empty line"""
         pass
 
     def do_quit(self, arg):
+
         """Quit command to exit the program"""
         return True
 
     def do_EOF(self, arg):
+
         """Exit the program"""
         print("")
         return True
 
     def help_quit(self):
+
         """What quit command do"""
         print("Quit command to exit the program")
-    
+ 
     def do_create(self, arg):
+
         """Create a new class instance and print its id"""
         Wrds = shlex.split(arg)
         if len(Wrds) == 0:
@@ -51,6 +57,7 @@ class HBNBCommand(cmd.Cmd):
             storage.save()
 
     def do_show(self, arg):
+
         """Display the str repr. of a class instance of a given id"""
         Wrds = shlex.split(arg)
         objs = storage.all()
@@ -66,6 +73,7 @@ class HBNBCommand(cmd.Cmd):
             print(objs["{}.{}".format(Wrds[0], Wrds[1])])
 
     def do_destroy(self, arg):
+
         """Delete a class instance of a given id"""
         Wrds = shlex.split(arg)
         objs = storage.all()
@@ -82,6 +90,7 @@ class HBNBCommand(cmd.Cmd):
             storage.save()
 
     def do_all(self, arg):
+
         """Prints all str repr. of all instances based on\not class name"""
         Wrds = shlex.split(arg)
         if len(Wrds) > 0 and Wrds[0] not in self.__classes:
@@ -96,6 +105,7 @@ class HBNBCommand(cmd.Cmd):
             print(objs)
 
     def do_update(self, arg):
+
         """Updates an instance based on the class name and id"""
         Wrds = shlex.split(arg)
         objs = storage.all()
