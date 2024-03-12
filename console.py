@@ -43,7 +43,7 @@ class HBNBCommand(cmd.Cmd):
 
         """What quit command do"""
         print("Quit command to exit the program")
- 
+
     def do_create(self, arg):
 
         """Create a new class instance and print its id"""
